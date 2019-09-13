@@ -3,8 +3,9 @@
 // Date
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
-//<img src="west.png" id="image" onclick="rotate();"></img>
+// Kanye West shoots out random objects from his mouth at drake... 
+//except theres a random object that moves in the center of the screen that can block them...
+
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
 } 
@@ -12,6 +13,8 @@ function draw() {
   background(0);
   rotateX(frameCount * 0.2);
   rotateZ(frameCount * 0.2);
+
+
   //cone(150, 210);
   //ellipsoid(200, 300, 300);
   //<img src="west.png" alt="west" width="60" height="35"></img>
@@ -19,10 +22,6 @@ function draw() {
   
 
 }
-<button id="button">Click me!</button>
-<div id="west">
-  <img src="west.png" id="image" onclick="rotate();"></img>
-</div> 
 
 
 
