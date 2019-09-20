@@ -7,51 +7,73 @@ let w;
 function preload() {
   west = loadImage("assets/west1.png");
   west2 = loadImage("assets/west2.png");
+  drake = loadImage("assets/drake.png")
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  x = width / 2
+  x = width 
   y = height
   
 }
 
 function draw() {
   background('#fae');
-
+  
   if (keyIsPressed) {
+
+  }
     if (key === 'w') {
       h -= 4;
+      
+         
     }
-    else if (key === 's') {
+    if (key === 's') {
       h += 4;
     }
-    else if (key === 'd') {
+    
+    if (key === 'd') {
+      image(west2, 100, h);
+      stroke(50);
+      fill("red");
+      ellipse(x, y, 50);
+      x = x + 6
+        
       
-      image(west2, 100, h)  
-      if (mouseIsPressed) {
-        if (mouseButton === LEFT) {
-          stroke(50);
-          fill("red");
-          ellipse(x, h, 50);
-          y = y + random(-2, 2)
-          x = x + 6;
-          
+    }
+    else {
+      image(west, 100, h)
+    }
+
+
+
+      // if (mouseIsPressed) {
+      //   if (mouseButton === LEFT) {
+      //     stroke(50);
+      //     fill("red");
+      //     ellipse(x, y, 50, h)
+      //     x = x + 6;
+      // } 
+   
+
             
-          }
-        }
-      }
+          // }
+        // }
+      
   
     
-    //else if (keyCode === RIGHT_ARROW) {
+    
   
-   // }
-  }
-
-  imageMode(CENTER);
-  image(west, 100, h);
-
+   
+   
+   
+   
+   
+   
 }
+
+
+
 
 
 
