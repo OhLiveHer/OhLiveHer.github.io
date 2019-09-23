@@ -1,5 +1,6 @@
 let west;
 let west2;
+let br;
 let h = 50;
 let x;
 let y;
@@ -10,7 +11,7 @@ function preload() {
   west = loadImage("assets/west1.png");
   west2 = loadImage("assets/west2.png");
   drake = loadImage("assets/drake.png");
-  br = loadImage("assets/br.jpg");
+  br = loadImage("assets/br.png");
 }
 
 function setup() {
@@ -21,10 +22,12 @@ function setup() {
   r = 100
   
   
+  
 }
 
 function draw() {
-  background('#FF69B4');
+  imageMode(CORNER);
+  background(br);
   x += dx;
   y1 += dy;
 
@@ -36,8 +39,9 @@ function draw() {
     dy  /=  -1
   }
 
-  image(drake, x, y1, 250, 250)
+  
   imageMode(CENTER)
+  image(drake, x, y1, 250, 250)
   
   if (keyIsPressed) {
 
