@@ -1,15 +1,106 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+let x;
+let y;
+let dx;
+let dy;
+let radius = 100;
+let rectSize = 100;
+let state = "menu";
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(255);
+  
+  x = width/2;
+  y = height/2;
+  dx = random(-15, 15);
+  dy = random(-15, 15);
 }
 
 function draw() {
-  line(mouseX, mouseY, pmouseX, pmouseY);
+  background(255);
+
+  if (state === "menu") {
+    showMenu();
+    checkIfButtonClicked();
+
+  }
+
+  
+  else if (state === "circle") {
+    moveShape();
+    displayCircle();
+  }
+  else if (state === "rectangle") {
+    moveShape();
+    displayRectangle();
+  }
+}
+
+function showMenu() {
+  // show rectangle button
+  rectMode(CENTER);
+  fill("#fae")
+  rect(width/2, height/2 - 100, 400, 150);
+  textAlign(CENTER, CENTER);
+  textSize(50);
+  fill(0);
+  text("Tangy Tangle", width/2, height/2 - 100)
+  // show circle button
+  fill("#fae")
+  rect(width / 2, height / 2 + 100, 400, 150);
+  textSize(50);
+  fill(0);
+  text("Circy Circle", width/2, height/2 + 100);
+}
+function checkIfButtonClicked() {
+  if (mouseIsPressed) {
+    if (mouseX > width / 2 - 200 && mouseX < width/2 + 200 &&
+      mouseY > height/2 - 175 && mouseY < height/2 + 175) {
+        state = "rectangle";      
+      }
+
+    if (mouseX > width / 2 - 200 && mouseX < width/2 + 200 &&
+      mouseY > height/2 + 100 - 75 && mouseY < height/2 + 100 +75) {
+        state = "circle";
+    
+    }
+      
+  }
+
+}
+function windowResized() {
+  setup();
+}
+
+function moveShape() {
+  // move
+  x += dx;
+  y += dy;
+}
+
+function displayCircle() {
+  // bounce if needed
+  if (x > width - radius/2 || x < 0 + radius/2) {
+    dx *= -1;
+  }
+
+  if (y > height - radius/2 || y < 0 + radius/2) {
+    dy *= -1;
+  }
+
+  fill(0);
+  circle(x, y, radius);
+}
+
+function displayRectangle() {
+  // bounce if needed
+  if (x > width - rectSize || x < 0) {
+    dx *= -1;
+  }
+
+  if (y > height - rectSize || y < 0) {
+    dy *= -1;
+  }
+
+  fill(0);
+  rect(x, y, rectSize, rectSize);
 }
