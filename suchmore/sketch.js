@@ -34,12 +34,20 @@ function draw() {
     
     fill('white');
     text(score, width/2, height - 600);
+    text(timer, width/2 - 600, height - 700);
     if (frameCount % 60 == 0 && timer > 0) {
-      timer --;
+      timer -= 1;
     }
-    if (timer = 0 && score != 30){
-      state = "menu";
+      if (timer = 0 && score != 30){
+        state = "menu";
     }
+      else if (timer = 0 && score === 30){
+        textAlign(CENTER, CENTER);
+        size(500);
+        text("you win!");
+
+    }
+
 
     
 
