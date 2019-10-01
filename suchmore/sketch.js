@@ -36,7 +36,7 @@ function draw() {
     text(score, width/2, height - 600);
     text(timer, width/2 - 600, height - 700);
     if (frameCount % 60 == 0 && timer > 0) {
-      timer -= 1;
+      timer --;
     }
       if (timer = 0 && score != 30){
         state = "menu";
