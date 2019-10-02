@@ -1,10 +1,13 @@
-//normal = 30 clicks in 5 seconds or game over, hard is 50 clicks in 5 seconds
+//normal = 50 clicks in 10 seconds or game over, hard is 90 clicks in 10 seconds
 
 
 let state = "menu";
 let r, g, b;
 var score = 0;
-let timer = 5;
+let timer = 10;
+// let lesstime = 1000;
+let lastTimeCountedDown = 0;
+
 
 
 function setup() {
@@ -34,17 +37,31 @@ function draw() {
     
     fill('white');
     text(score, width/2, height - 600);
+    fill('black')
     text(timer, width/2 - 600, height - 700);
-    if (frameCount % 60 == 0 && timer > 0) {
-      timer --;
+    
+    
+    if (millis() > lastTimeCountedDown + 1000) {
+      lastTimeCountedDown = millis();
+      timer = timer - 1;
+      
     }
-      if (timer = 0 && score != 30){
-        state = "menu";
+
+        
     }
-      else if (timer = 0 && score === 30){
+      else if (timer <= 0 && score >= 60){
+        fill('#fae')
+        rect(width/2 - 600, height - 700, 100, 100);
         textAlign(CENTER, CENTER);
-        size(500);
-        text("you win!");
+        textSize(70);
+        fill(0);
+        text("CONGRATULATIONS YOU HAVE CLICKED!!!!!!!!", width/2, height/2);
+        if (timer <= -15){
+          state = "menu";
+        } 
+        
+
+ 
 
     }
 
@@ -55,7 +72,7 @@ function draw() {
 
 
 
-  }
+  
   else if (state === "second") {
     text("Maybe this will have something too :)", width/2, height/2 - 100) 
     
