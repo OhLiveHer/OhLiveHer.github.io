@@ -5,6 +5,7 @@ let state = "menu";
 let r, g, b;
 var score = 0;
 let timer = 10;
+
 // let lesstime = 1000;
 let lastTimeCountedDown = 0;
 
@@ -49,17 +50,35 @@ function draw() {
 
         
     }
-      else if (timer <= 0 && score >= 60){
+      if (timer <= 0 && score >= 50){
+        
+        
         fill('#fae')
         rect(width/2 - 600, height - 700, 100, 100);
         textAlign(CENTER, CENTER);
         textSize(70);
         fill(0);
         text("CONGRATULATIONS YOU HAVE CLICKED!!!!!!!!", width/2, height/2);
-        if (timer <= -15){
+        if (timer === -5){
           state = "menu";
         } 
+      }
+
+      else if (timer <= 0 && score < 50){
         
+        
+        fill('#fae')
+        rect(width/2 - 600, height - 700, 100, 100);
+        textAlign(CENTER, CENTER);
+        textSize(70);
+        fill(0);
+        text("silly boy you cannot click :( ", width/2, height/2);
+        if (timer === -5){
+          state = "menu";
+        } 
+      
+
+      
 
  
 
@@ -82,12 +101,14 @@ function draw() {
 }
 function mousePressed() {
   let d = dist(mouseX, mouseY, x, y);
-  if (d < 100) {
-    r = random(255);
-    g = random(255);
-    b = random(255);
-    score += 1;
-    
+  if (mouseButton === LEFT){
+    if (d < 100) {
+      r = random(255);
+      g = random(255);
+      b = random(255);
+      score += 1;
+      
+    }
   }
 }
 
