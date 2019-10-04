@@ -48,13 +48,15 @@ function draw() {
       
     }
 
-        
-    }
       if (timer <= 0 && score >= 50){
         
         
         fill('#fae')
         rect(width/2 - 600, height - 700, 100, 100);
+        textAlign(CENTER, CENTER);
+        textSize(50);
+        fill(255);
+        text(score /10, width/2, height - 200);
         textAlign(CENTER, CENTER);
         textSize(70);
         fill(0);
@@ -70,13 +72,17 @@ function draw() {
         fill('#fae')
         rect(width/2 - 600, height - 700, 100, 100);
         textAlign(CENTER, CENTER);
+        textSize(50);
+        fill(255);
+        text(score /10, width/2, height - 200);
+        textAlign(CENTER, CENTER);
         textSize(70);
         fill(0);
         text("silly boy you cannot click :( ", width/2, height/2);
         if (timer === -5){
           state = "menu";
         } 
-      
+      }
 
       
 
@@ -85,18 +91,62 @@ function draw() {
     }
 
 
-    
-
-
-
-
 
   
   else if (state === "second") {
-    text("Maybe this will have something too :)", width/2, height/2 - 100) 
+    rectMode(CENTER);
+    strokeWeight(0);
+    stroke(r, g, b);
+    fill(r, g, b,);
+    rect(x, y, 500, 250);
     
-    size(100)
+    fill('white');
+    text(score, width/2, height - 600);
+    fill('black')
+    text(timer, width/2 - 600, height - 700);
+    
+    
+    if (millis() > lastTimeCountedDown + 1000) {
+      lastTimeCountedDown = millis();
+      timer = timer - 1;
+      
+    }
 
+        
+    
+      if (timer <= 0 && score >= 90){
+        fill('#fae')
+        rect(width/2 - 600, height - 700, 100, 100);
+        textAlign(CENTER, CENTER);
+        textSize(50);
+        fill(255);
+        text(score /10, width/2, height - 200);
+        textAlign(CENTER, CENTER);
+        textSize(70);
+        fill(0);
+        text("CONGRATULATIONS YOU HAVE CLICKED!!!!!!!!", width/2, height/2);
+        if (timer = -5){
+          state = "menu";
+        } 
+      }
+
+      else if (timer <= 0 && score < 90){
+        
+        
+        fill('#fae')
+        rect(width/2 - 600, height - 700, 100, 100);
+        textAlign(CENTER, CENTER);
+        textSize(50);
+        fill(255);
+        text(score /10, width/2, height -200);
+        textAlign(CENTER, CENTER);
+        textSize(70);
+        fill(0);
+        text("silly boy you cannot click :( ", width/2, height/2);
+        if (timer = -5){
+          state = "menu";
+        } 
+      } 
   }
 }
 function mousePressed() {
