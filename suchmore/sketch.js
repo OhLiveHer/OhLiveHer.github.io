@@ -125,7 +125,7 @@ function draw() {
         textSize(70);
         fill(0);
         text("CONGRATULATIONS YOU HAVE CLICKED!!!!!!!!", width/2, height/2);
-        if (timer = -5){
+        if (timer === -5){
           state = "menu";
         } 
       }
@@ -143,7 +143,7 @@ function draw() {
         textSize(70);
         fill(0);
         text("silly boy you cannot click :( ", width/2, height/2);
-        if (timer = -5){
+        if (timer === -5){
           state = "menu";
         } 
       } 
@@ -177,6 +177,10 @@ function showMenu() {
   textSize(50);
   fill(255);
   text("Hard", width/2, height/2 + 100);
+
+  textSize(50);
+  fill(255);
+  text("Normal (50 clicks in 10s) Hard (90 clicks in 10s)", width/2, height/2 -300);
 }
 function checkIfButtonClicked() {
   if (mouseIsPressed) {
