@@ -6,6 +6,8 @@ let r, g, b;
 var score = 0;
 let timer = 10;
 let lastTimeCountedDown = 0;
+let colorSwitch = 0;
+let t;
 
 
 
@@ -61,6 +63,8 @@ function draw() {
         fill(0);
         text("CONGRATULATIONS YOU HAVE CLICKED!!!!!!!!", width/2, height/2);
         if (timer === -5){
+          timer = 10;
+          score = 0;
           state = "menu";
         } 
       }
@@ -79,6 +83,8 @@ function draw() {
         fill(0);
         text("silly boy you cannot click :( ", width/2, height/2);
         if (timer === -5){
+          timer = 10;
+          score = 0;
           state = "menu";
         } 
       }
@@ -125,6 +131,8 @@ function draw() {
         fill(0);
         text("CONGRATULATIONS YOU HAVE CLICKED!!!!!!!!", width/2, height/2);
         if (timer === -5){
+          timer = 10;
+          score = 0;
           state = "menu";
         } 
       }
@@ -143,6 +151,8 @@ function draw() {
         fill(0);
         text("silly boy you cannot click :( ", width/2, height/2);
         if (timer === -5){
+          timer = 10;
+          score = 0;
           state = "menu";
         } 
       } 
@@ -150,17 +160,25 @@ function draw() {
 }
 //the clicker, stating that when you click within a certain area +1 score will be added and the rectangle will switch color everytime it is clicked.
 function mousePressed() {
-  let d = dist(mouseX, mouseY, x, y);
-  if (mouseButton === LEFT){
-    if (d < 100) {
-      r = random(255);
-      g = random(255);
-      b = random(255);
-      score += 1;
+
+  if (timer > 0){
+  
+    if (mouseButton === LEFT){
+  
+      if (mouseX > width / 2 - 250 && mouseX < width/2 + 250 &&
+        mouseY > height/2 - 125 && mouseY < height/2 + 125){
+        r = random(255);
+        g = random(255);
+        b = random(255);
+        score += 1;
       
+        
+      }
     }
   }
 }
+  
+
 //basic menu
 function showMenu() {
   
@@ -177,10 +195,21 @@ function showMenu() {
   textSize(50);
   fill(255);
   text("Hard", width/2, height/2 + 100);
-
-  textSize(50);
+  
+  textSize(25);
   fill(255);
-  text("Normal (50 clicks in 10s) Hard (90 clicks in 10s)", width/2, height/2 -300);
+  text("(Normal 50 clicks in 10 seconds, Hard 90 clicks in 10 seconds)", width/2, height/2 - 250);
+  
+  if (millis() > colorSwitch + 100) {
+    colorSwitch = millis();
+    r = random(255);
+    g = random(255);
+    b = random(255);
+    t = random(75, 500);
+  }
+  textSize(t);
+  fill(r, g, b);
+  text("Click Too Hard", width/2, height/2 -300);
   
 }
 //menu buttons
