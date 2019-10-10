@@ -120,20 +120,23 @@ function draw() {
         
     //the exact same thing as normal but 90
       if (timer <= 0 && score >= 90){
-        fill('#fae')
-        rect(width/2 - 600, height - 700, 100, 100);
+        //fill('#fae')
+        //rect(width/2 - 600, height - 700, 100, 100);
         textAlign(CENTER, CENTER);
         textSize(50);
         fill(255);
         text(score /10, width/2, height - 200);
         textAlign(CENTER, CENTER);
-        textSize(70);
+        textSize(50);
         fill(0);
-        text("CONGRATULATIONS YOU HAVE CLICKED!!!!!!!!", width/2, height/2);
+        text("Brace yourself for the hardest clicking challenge of them all", width/2, height/2);
+        textSize(50);
+        fill(0);
+        text("(starts when timer hits -5)", width/2, height/2 + 50);
         if (timer === -5){
           timer = 10;
           score = 0;
-          state = "menu";
+          state = "third";
         } 
       }
     //the exact same thing as normal but 90
@@ -150,6 +153,69 @@ function draw() {
         textSize(70);
         fill(0);
         text("silly boy you cannot click :( ", width/2, height/2);
+        if (timer === -5){
+          timer = 10;
+          score = 0;
+          state = "menu";
+        } 
+      } 
+  }
+
+
+  else if (state === "third"){
+    
+    background('red');
+    rectMode(CENTER);
+    strokeWeight(0);
+    stroke(r, g, b);
+    fill(r, g, b,);
+    rect(x, y, 500, 250);
+      
+    fill('white');
+    text(score, width/2, height - 600);
+    fill('black');
+    text(timer, width/2 - 600, height - 700);
+    fill('black');
+    textSize(50);
+    text("Click 110 times in 10 seconds", width/2, height - 750);
+      
+      
+      if (millis() > lastTimeCountedDown + 1000) {
+        lastTimeCountedDown = millis();
+        timer = timer - 1;
+        
+      }
+    if (timer <= 0 && score >= 110){
+      fill('red')
+      rect(width/2 - 600, height - 700, 100, 100);
+      textAlign(CENTER, CENTER);
+      textSize(50);
+      fill(255);
+      text(score /10, width/2, height - 200);
+      textAlign(CENTER, CENTER);
+      textSize(50);
+      fill(0);
+      text("You have achieved clicking greatness, all praise our new god", width/2, height/2);
+        if (timer === -5){
+          timer = 10;
+          score = 0;
+          state = "menu";
+        } 
+      }
+
+    else if (timer <= 0 && score < 110){
+        
+        
+      fill('red')
+      rect(width/2 - 600, height - 700, 100, 100);
+      textAlign(CENTER, CENTER);
+      textSize(50);
+      fill(255);
+      text(score /10, width/2, height -200);
+      textAlign(CENTER, CENTER);
+      textSize(50);
+      fill(255);
+      text("you are not the clicking prodigy that we thought you were", width/2, height/2);
         if (timer === -5){
           timer = 10;
           score = 0;
@@ -199,17 +265,20 @@ function showMenu() {
   textSize(25);
   fill(255);
   text("(Normal 50 clicks in 10 seconds, Hard 90 clicks in 10 seconds)", width/2, height/2 - 250);
-  
+  //randomiser for colors and text size for the title
   if (millis() > colorSwitch + 100) {
     colorSwitch = millis();
     r = random(255);
     g = random(255);
     b = random(255);
-    t = random(75, 500);
+    t = random(75, 85);
   }
   textSize(t);
   fill(r, g, b);
+  textStyle(BOLDITALIC);
   text("Click Too Hard", width/2, height/2 -300);
+
+  textStyle(NORMAL);
   
 }
 //menu buttons
