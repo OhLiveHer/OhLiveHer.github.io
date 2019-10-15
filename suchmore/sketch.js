@@ -202,7 +202,7 @@ function draw() {
           state = "menu";
         } 
       }
-
+//if you manage to beat hard mode you get 1 chance at super hard mode to see how great of a clicker you truly are.
     else if (timer <= 0 && score < 110){
         
         

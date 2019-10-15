@@ -1,31 +1,62 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
-
-let redAmount = 0; 
-let redChangeAmount = 1;
-
+let cannonX;
+let r, g, b;
+let cannonY;
+let cannonWidth;
+let cannonLength; 
+let cannonAngle;
+let bullets = [];
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(38);
+
+  cannonX = 75;
+  cannonY = height - 150;
+  cannonWidth = 50;
+  cannonLength = 125;
+  cannonAngle = 0;
 }
 
 function draw() {
-  fill(redAmount, 0, 255);
-  noStroke(); 
-  ellipse(mouseX, mouseY, 100, 100);
+  background('#fae');
+  displayCannon();
+  updateBullets();
+}
 
-  redAmount += redChangeAmount;
+function displayCannon() {
+  push();
+  translate(cannonX, cannonY);
+  cannonAngle = atan2(mouseY - cannonY, mouseX - cannonX);
+  rotate(cannonAngle);
+  fill('black');
+  rect(0, -cannonWidth/2, cannonLength, cannonWidth);
+  fill('black');
+  circle(0, 0, cannonWidth + 20);
+  pop();
+}
 
-  if (redAmount >= 255) {
-    redChangeAmount *= -1
+function mouseDragged() {
+  r = random(255);
+  g = random(255);
+  b = random(255);
+  fire();
+}
+
+function fire() {
+  let thisBullet = {
+    x: cannonX,
+    y: cannonY,
+    r: cannonWidth,
+    angle: cannonAngle,
+    speed: 5
+  };
+  bullets.push(thisBullet);
+}
+
+function updateBullets() {
+  for (let thisBullet of bullets) {
+    thisBullet.x += thisBullet.speed * cos(thisBullet.angle);
+    thisBullet.y += thisBullet.speed * sin(thisBullet.angle);
+    noStroke();
+    fill(r, g, b);
+    circle(thisBullet.x, thisBullet.y, thisBullet.r);
   }
-  if (redAmount <= 0) {
-    redChangeAmount *= -1;
-  }
-
-  console.log(redAmount);
 }
