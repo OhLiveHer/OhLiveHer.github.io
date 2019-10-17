@@ -56,18 +56,19 @@ function draw() {
       
       fill('#fae')
       rect(width/2 - 600, height - 700, 100, 100);
-        textAlign(CENTER, CENTER);
-        textSize(50);
-        fill(255);
-        text(score /10, width/2, height - 200);
-        textAlign(CENTER, CENTER);
-        textSize(70);
-        fill(0);
-        text("CONGRATULATIONS YOU HAVE CLICKED!!!!!!!!", width/2, height/2);
-        if (timer === -5){
-          timer = 10;
-          score = 0;
-          state = "menu";
+      textAlign(CENTER, CENTER);
+      textSize(50);
+      fill(255);
+      text(score /10, width/2, height - 200);
+      textAlign(CENTER, CENTER);
+      textSize(70);
+      fill(0);
+      text("CONGRATULATIONS YOU HAVE CLICKED!!!!!!!!", width/2, height/2);
+      if (timer === -5){
+        highscore.push(score);
+        timer = 10;
+        score = 0;
+        state = "menu";
         } 
       }
       //if you fail you will be given text to belittle you for not being able to click, then after 5 seconds pass you will be returned to the title screen
@@ -85,6 +86,7 @@ function draw() {
         fill(0);
         text("silly boy you cannot click :( ", width/2, height/2);
         if (timer === -5){
+          highscore.push(score);
           timer = 10;
           score = 0;
           state = "menu";
@@ -136,6 +138,7 @@ function draw() {
         fill(0);
         text("(starts when timer hits -5)", width/2, height/2 + 50);
         if (timer === -5){
+          highscore.push(score);
           timer = 10;
           score = 0;
           state = "third";
@@ -156,6 +159,7 @@ function draw() {
         fill(0);
         text("silly boy you cannot click :( ", width/2, height/2);
         if (timer === -5){
+          highscore.push(score);
           timer = 10;
           score = 0;
           state = "menu";
@@ -199,6 +203,7 @@ function draw() {
         fill(0);
         text("You have achieved clicking greatness, all praise our new god", width/2, height/2);
         if (timer === -5){
+          highscore.push(score);
           timer = 10;
           score = 0;
           state = "menu";
@@ -219,6 +224,7 @@ function draw() {
         fill(255);
         text("you are not the clicking prodigy that we thought you were", width/2, height/2);
         if (timer === -5){
+          highscore.push(score);
           timer = 10;
           score = 0;
           state = "menu";
@@ -249,7 +255,7 @@ function draw() {
   
   //basic menu
   function showMenu() {
-    
+    displayScore();
     rectMode(CENTER);
     fill("black")
     rect(width/2, height/2 - 100, 400, 150);
@@ -282,6 +288,16 @@ function draw() {
   
   textStyle(NORMAL);
   
+}
+function sortNumber(a, b) {
+  return b - a;
+}
+//highscore array
+function displayScore() {
+  highscore.sort(sortNumber);
+  textSize(40);
+  fill(255);
+  text(highscore, width/2 - 600, height/2 - 600)
 }
 //menu buttons
 function checkIfButtonClicked() {
