@@ -1,3 +1,8 @@
+//State Variables (CLICK TOO HARD)
+//Oliver Buick
+//
+
+
 //normal = 50 clicks in 10 seconds or game over, hard is 90 clicks in 10 seconds
 
 
@@ -12,7 +17,7 @@ let t;
 let highscore = [];
 
 
-
+//setting random colors for title and clicker
 function setup() {
   createCanvas(windowWidth, windowHeight);
   x = width/2;
@@ -233,7 +238,7 @@ function draw() {
     }
   }
   //the clicker, stating that when you click within a certain area +1 score will be added and the rectangle will switch color everytime it is clicked.
-  function mousePressed() {
+  function mouseClicked() {
     
     if (timer > 0){
       
@@ -253,7 +258,7 @@ function draw() {
   }
   
   
-  //basic menu
+  //menu
   function showMenu() {
     displayScore();
     rectMode(CENTER);
@@ -289,15 +294,22 @@ function draw() {
   textStyle(NORMAL);
   
 }
+//sorts the highscores from highest to lowest
 function sortNumber(a, b) {
   return b - a;
 }
 //highscore array
 function displayScore() {
-  highscore.sort(sortNumber);
+  highscore.sort(sortNumber); 
+  textStyle(BOLDITALIC);
   textSize(40);
-  fill(255);
-  text(highscore, width/2 - 600, height/2 - 600)
+  fill('black');
+  text("Highscores:", width/2 - 600, height/2 - 100);
+  textStyle(BOLD);
+  textSize(35);
+  fill("white");
+  text(highscore, width/2 - 600, height/2 - 50);
+  textStyle(NORMAL);
 }
 //menu buttons
 function checkIfButtonClicked() {
