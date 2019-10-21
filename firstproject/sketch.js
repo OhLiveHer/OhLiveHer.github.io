@@ -8,10 +8,10 @@ let bullets = [];
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  cannonX = 75;
-  cannonY = height - 150;
-  cannonWidth = 50;
-  cannonLength = 125;
+  cannonX = width/2;
+  cannonY = height/2;
+  cannonWidth = 100000;
+  cannonLength = 100000;
   cannonAngle = 0;
 }
 
@@ -29,7 +29,7 @@ function displayCannon() {
   fill('black');
   rect(0, -cannonWidth/2, cannonLength, cannonWidth);
   fill('black');
-  circle(0, 0, cannonWidth + 20);
+  circle(width/2 + 900, height/2 + 900, cannonWidth + 20);
   pop();
 }
 
@@ -46,7 +46,7 @@ function fire() {
     y: cannonY,
     r: cannonWidth,
     angle: cannonAngle,
-    speed: 5
+    speed: 2
   };
   bullets.push(thisBullet);
 }
