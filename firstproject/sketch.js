@@ -10,8 +10,8 @@ function setup() {
 
   cannonX = width/2;
   cannonY = height/2;
-  cannonWidth = 100000;
-  cannonLength = 100000;
+  cannonWidth = 70;
+  cannonLength = 125;
   cannonAngle = 0;
 }
 
@@ -19,6 +19,7 @@ function draw() {
   background('#fae');
   displayCannon();
   updateBullets();
+  
 }
 
 function displayCannon() {
@@ -29,7 +30,7 @@ function displayCannon() {
   fill('black');
   rect(0, -cannonWidth/2, cannonLength, cannonWidth);
   fill('black');
-  circle(width/2 + 900, height/2 + 900, cannonWidth + 20);
+  circle(width/2, height/2, cannonWidth);
   pop();
 }
 
