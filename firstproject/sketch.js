@@ -10,8 +10,8 @@ function setup() {
 
   cannonX = width/2;
   cannonY = height/2;
-  cannonWidth = 70;
-  cannonLength = 125;
+  cannonWidth = 100;
+  cannonLength = 100;
   cannonAngle = 0;
 }
 

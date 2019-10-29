@@ -1,38 +1,66 @@
-let shapes = [];
+let cannonX;
+let cannonY;
+let cannonWidth;
+let cannonLength;
+let cannonAngle;
+let bullets = [];
+let r,g,b;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background('#fae');
-} 
 
+  cannonX = 75;
+  cannonY = height - 150;
+  cannonWidth = 1000;
+  cannonLength = 1000;
+  cannonAngle = 0;
+}
 
 function draw() {
-  for (let i = shapes.length - 1; i > 0; i++) {
+  background(220);
+  
+  displayCannon();
+  updateBullets();
+}
 
-    if (shapes[i].y - shapes[i].r > height) {
-      shapes.splice(i, 1);
+function displayCannon() {
+  push(); //save the transformation matrix
+  translate(cannonX, cannonY);
+  cannonAngle = atan2(mouseY - cannonY, mouseX - cannonX);
+  rotate(cannonAngle);
+  rect(0, -cannonWidth/2, cannonLength, cannonWidth);
+  circle(0, 0, cannonWidth);
+  pop(); //reload the old transformation matrix
+}
 
+function mouseDragged() {
+  r = random(255);
+  g = random(255);
+  b = random(255);
+  fire();
+}
+
+function fire() {
+  let thisBullet = {
+    x: cannonX,
+    y: cannonY,
+    radius: cannonWidth,
+    angle: cannonAngle,
+    speed: 1.5
+  };
+  bullets.push(thisBullet);
+}
+
+function updateBullets() {
+  for (let i = bullets.length - 1; i > 0; i--) {
+    if (bullets[i].x < 0 || bullets[i].x > width ||
+        bullets[i].y < 0 || bullets[i].y > height) {
+          bullets.splice(i, 1);
     }
     else {
-      shapes[i].y += shapes[i].dy;
-      //noStroke();
-      fill(shapes[i].color);
-      ellipse(shapes[i].x, shapes[i].y, shapes[i].r*2, shapes[i].r*2)
-
+      bullets[i].x += bullets[i].speed * cos(bullets[i].angle);
+      bullets[i].y += bullets[i].speed * sin(bullets[i].angle);
+      circle(bullets[i].x, bullets[i].y, bullets[i].radius);
     }
   }
-
 }
-
-function mouseClicked() {
-  let someShape = {
-    x: mouseX,
-    y: mouseY,
-    r: random(10, 200),
-    color: color(random(255), random(255), random(255), random(100)),
-    dy: random(1, 20)
-  };
-  
-  shapes.push(someShape);
-}
-  
