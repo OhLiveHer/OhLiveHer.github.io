@@ -1,3 +1,13 @@
+//create a 5x5 grid with an image, then fill it with preset images (also include a random feature)
+//they will have x amount of time (probably 5 seconds) to memorize it then the grid will go blank 
+//you'll have x amount of time (probably 20ish seconds) to recreate it on the grid
+//with the number keys (1-5) you'll pick the color then with the mouse you'll create the image 
+//after the time limit is done you will get the percentage of how much you completed
+//potentially create 3 modes (5x5, 7x7, 10x10) with 5 or so preset images in each but also a random feature
+//timer will go up based off of the size of the grid
+//make a creative name (100% necessary)
+//
+
 let grid;
 let rows = 5;
 let cols = 5;
@@ -10,32 +20,7 @@ function setup() {
 function draw() {
   background('#fae');
   displayGrid(grid, rows, cols);
-}
-function keyIsPressed() {
-  if (key === 'r'){
-    grid = createRandom2dArray(cols, rows);
-  }
-  if (key === 'c'){
-    for (let x = 0; x < cols; x++) {
-      for(let y = 0; y < rows; y++) {
-        grid[y][x] = 1;
-      }
-    }
-  }
-}
 
-function mousePressed() {
-  let cellSize = 50;
-
-  let xCoord = floor(mouseX / cellSize);
-  let yCoord = floor(mouseY / cellSize);
-  
-  if (grid[yCoord][xCoord] === 1) {
-    grid[yCoord][xCoord] = 0;
-  }
-  else {
-    grid[yCoord][xCoord] = 1;
-  }
 }
 
 function displayGrid(grid, windowWidth, windowHeight) {
@@ -68,3 +53,4 @@ function createRandom2dArray(cols, rows) {
   }
   return randomGrid;
 }
+
