@@ -6,7 +6,7 @@
 //potentially create 3 modes (5x5, 7x7, 10x10) with 5 or so preset images in each but also a random feature
 //timer will go up based off of the size of the grid
 //make a creative name (100% necessary)
-//
+
 
 let grid;
 let rows = 5;
@@ -14,7 +14,7 @@ let cols = 5;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  grid = createRandom2dArray(cols, rows);
+  grid = createArray(cols, rows);
 }
 
 function draw() {
@@ -38,7 +38,7 @@ function displayGrid(grid, windowWidth, windowHeight) {
   }
 }
 
-function createRandom2dArray(cols, rows) {
+function createArray(cols, rows) {
   let randomGrid = [];
   for (let x = 0; x < cols; x++) {
     randomGrid.push([]);
@@ -52,5 +52,19 @@ function createRandom2dArray(cols, rows) {
     }
   }
   return randomGrid;
+}
+
+function mousePressed() {
+  let cellSize = 100;
+
+  let xCoord = floor(mouseX / cellSize);
+  let yCoord = floor(mouseY / cellSize);
+  
+  if (grid[yCoord][xCoord] === 1) {
+    grid[yCoord][xCoord] = 0;
+  }
+  else {
+    grid[yCoord][xCoord] = 1;
+  }
 }
 

@@ -25,7 +25,7 @@ function keyIsPressed() {
 }
 
 function mousePressed() {
-  let cellSize = 50;
+  let cellSize = width/cols;
 
   let xCoord = floor(mouseX / cellSize);
   let yCoord = floor(mouseY / cellSize);
@@ -37,6 +37,7 @@ function mousePressed() {
     grid[yCoord][xCoord] = 1;
   }
 }
+
 
 function displayGrid(grid, windowWidth, windowHeight) {
   let cellSize = 100;
