@@ -6,11 +6,13 @@
 //potentially create 3 modes (5x5, 7x7, 10x10) with 5 or so preset images in each but also a random feature
 //timer will go up based off of the size of the grid
 //make a creative name (100% necessary)
+//ask if all the visual aspects should be in one function or in multiple, different for (grid, timer, colors, etc)
 
 
 let grid;
 let rows = 5;
 let cols = 5;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -68,3 +70,6 @@ function mousePressed() {
   }
 }
 
+function displayMenu() {
+  
+}
