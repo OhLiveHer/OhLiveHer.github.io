@@ -22,6 +22,8 @@ function setup() {
 function draw() {
   background('#fae');
   displayGrid(grid, rows, cols);
+  displayGame()
+  
 
 }
 
@@ -70,6 +72,17 @@ function mousePressed() {
   }
 }
 
-function displayMenu() {
-  
+function displayGame() {
+  //------------------------------------------
+  fill('Blue');
+  ellipse(width/2 + 500, height/2 - 300, 75);
+  fill('Red');
+  ellipse(width/2 + 500, height/2 - 200, 75);
+  fill('Green');
+  ellipse(width/2 + 500, height/2 - 100, 75);
+  fill('Yellow');
+  ellipse(width/2 + 500, height/2, 75);
+  fill('Black');
+  ellipse(width/2 + 500, height/2 + 100, 75);
+  //------------------------------------------
 }
