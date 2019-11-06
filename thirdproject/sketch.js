@@ -58,24 +58,12 @@ function createArray(cols, rows) {
   return randomGrid;
 }
 
-function mousePressed() {
-  let cellSize = 100;
 
-  let xCoord = floor(mouseX / cellSize);
-  let yCoord = floor(mouseY / cellSize);
-  
-  if (grid[yCoord][xCoord] === 1) {
-    grid[yCoord][xCoord] = 0;
-  }
-  else {
-    grid[yCoord][xCoord] = 1;
-  }
-}
 
 function displayGame() {
   //------------------------------------------
   fill('Blue');
-  ellipse(width/2 + 500, height/2 - 300, 75);
+  ellipse(width/2 + 500, height/2 - 300, 75, 75);
   fill('Red');
   ellipse(width/2 + 500, height/2 - 200, 75);
   fill('Green');
@@ -85,4 +73,10 @@ function displayGame() {
   fill('Black');
   ellipse(width/2 + 500, height/2 + 100, 75);
   //------------------------------------------
+}
+function mousePressed() {
+  let d = dist(mouseX, mouseY, width/2 + 500, height/2 - 300);
+  if (d < 37) {
+    text("CONGRATULATIONS YOU HAVE CLICKED!!!!!!!!", width/2 + 500, height -300); 
+  }
 }
