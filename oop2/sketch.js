@@ -1,75 +1,53 @@
-let pablo;
-let juan;
 
+// OOP Bullet
+
+let theBullets = [];
 let r, g, b;
-
-
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(0);
+}
+
+function draw() {
+  background(255);
+  for (let i = 0; i < theBullets.length; i++) {
+    theBullets[i].move();
+    theBullets[i].display();
+  }
+
+  // If you want to spam the screen when holding down the mouse, use this...
+
+  // if (mouseIsPressed) {
+  //   let myBullet = new Bullet(mouseX, mouseY, random(-3,3), random(-3, 3), 10);
+  //   theBullets.push(myBullet);
+  // }
+
+}
+
+function mousePressed() {
+  let myBullet = new Bullet(mouseX, mouseY, random(-3,3), random(-3, 3), 10);
+  theBullets.push(myBullet);
   r = random(255);
   g = random(255);
   b = random(255);
-  pablo = new Walker();
-  juan = new Walker();
 }
 
-
-function draw() {
-  pablo.move();
-  pablo.display();
-  juan.move();
-  juan.display();
-
-  
-}
-
-class Walker {
-  constructor() {
-    this.x = width/2;
-    this.y = height/2;
-    this.fillColor = color(r, g, b); 
-    this.stepSize = 12;
-    this.radius = 3;
-
+class Bullet {
+  constructor(x, y, dx, dy, radius) {
+    this.x = x;
+    this.y = y;
+    this.dx = dx;
+    this.dy = dy;
+    this.radius = radius;
   }
+
   display() {
-    noStroke();
+    fill(0);
     circle(this.x, this.y, this.radius * 2);
   }
-  move() {
-    let choice = random(100);
-    if (choice < 25) {
-      this.y -= this.stepSize;
-      r = random(255);
-      g = random(255);
-      b = random(255);
-      
-    }
-    else if (choice < 50) {
-      this.y += this.stepSize;
-      r = random(255);
-      g = random(255);
-      b = random(255);
-    }
-    else if (choice < 75) {
-      this.x -= this.stepSize;
-      r = random(255);
-      g = random(255);
-      b = random(255);
-    }
-    else {
-      this.x += this.stepSize
-      r = random(255);
-      g = random(255);
-      b = random(255);
-    } 
 
+  move() {
+    this.x += this.dx;
+    this.y += this.dy;
   }
 }
-
-function mousePressed();
-r = random(255);
-g = random(255);
-b = random(255);

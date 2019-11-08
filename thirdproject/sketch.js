@@ -12,17 +12,21 @@
 let grid;
 let rows = 5;
 let cols = 5;
+let state = "menu";
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  background('#fae');
   grid = createArray(cols, rows);
 }
 
 function draw() {
-  background('#fae');
-  displayGrid(grid, rows, cols);
-  displayGame()
+  //change menu to game atm
+  if (state === "menu"); {
+    displayGrid(grid, rows, cols);
+    displayGame()
+  }
   
 
 }
@@ -35,7 +39,7 @@ function displayGrid(grid, windowWidth, windowHeight) {
         fill(255);
       }
       else {
-        fill(255);
+        fill(0);
       }
       rect(x*cellSize, y*cellSize, cellSize, cellSize);
     }
@@ -47,12 +51,22 @@ function createArray(cols, rows) {
   for (let x = 0; x < cols; x++) {
     randomGrid.push([]);
     for (let y = 0; y < rows; y++) {
-      if (random(100) < 50) {
-        randomGrid[x].push(1);
+      if (random(100) < 20) {
+        randomGrid[x].push('Blue');
       }
-      else {
-        randomGrid[x].push(0);
+      if (random(100) < 40) {
+        randomGrid[x].push('Red');
       }
+      if (random(100) < 60) {
+        randomGrid[x].push('Green');
+      }
+      if (random(100) < 80) {
+        randomGrid[x].push('Yellow');
+      }
+      if (random(100) < 99) {
+        randomGrid[x].push('black');
+      }
+
     }
   }
   return randomGrid;
@@ -63,7 +77,7 @@ function createArray(cols, rows) {
 function displayGame() {
   //------------------------------------------
   fill('Blue');
-  ellipse(width/2 + 500, height/2 - 300, 75, 75);
+  ellipse(width/2 + 500, height/2 - 300, 75);
   fill('Red');
   ellipse(width/2 + 500, height/2 - 200, 75);
   fill('Green');
@@ -74,9 +88,31 @@ function displayGame() {
   ellipse(width/2 + 500, height/2 + 100, 75);
   //------------------------------------------
 }
+//buttons
 function mousePressed() {
   let d = dist(mouseX, mouseY, width/2 + 500, height/2 - 300);
   if (d < 37) {
-    text("CONGRATULATIONS YOU HAVE CLICKED!!!!!!!!", width/2 + 500, height -300); 
+    console.log("inside1!")
+    
+  }
+  let d1 = dist(mouseX, mouseY, width/2 + 500, height/2 - 200);
+  if (d1 < 37) {
+    console.log("inside!2")
+    
+  }
+  let d2 = dist(mouseX, mouseY, width/2 + 500, height/2 - 100);
+  if (d2 < 37) {
+    console.log("inside3!")
+    
+  }
+  let d3 = dist(mouseX, mouseY, width/2 + 500, height/2);
+  if (d3 < 37) {
+    console.log("inside4!")
+    
+  }
+  let d4 = dist(mouseX, mouseY, width/2 + 500, height/2 + 100);
+  if (d4 < 37) {
+    console.log("inside5!")
+    
   }
 }
