@@ -6,13 +6,15 @@
 //potentially create 3 modes (5x5, 7x7, 10x10) with 5 or so preset images in each but also a random feature
 //timer will go up based off of the size of the grid
 //make a creative name (100% necessary)
-//ask if all the visual aspects should be in one function or in multiple, different for (grid, timer, colors, etc)
+
 
 
 let grid;
 let rows = 5;
 let cols = 5;
 let state = "menu";
+let w = width / 2;
+let h = height / 2;
 
 
 function setup() {
@@ -31,7 +33,7 @@ function draw() {
 
 }
 
-function displayGrid(grid, windowWidth, windowHeight) {
+function displayGrid(grid, w, h) {
   let cellSize = 100;
   for (let y = 0; y < cols; y++) {
     for (let x = 0; x < rows; x++) {
@@ -39,7 +41,7 @@ function displayGrid(grid, windowWidth, windowHeight) {
         fill(255);
       }
       else {
-        fill(0);
+        fill(255);
       }
       rect(x*cellSize, y*cellSize, cellSize, cellSize);
     }
@@ -63,7 +65,7 @@ function createArray(cols, rows) {
       if (random(100) < 80) {
         randomGrid[x].push('Yellow');
       }
-      if (random(100) < 99) {
+     if (random(100) < 99) {
         randomGrid[x].push('black');
       }
 
