@@ -1,75 +1,86 @@
-let pablo;
-let juan;
-
-let r, g, b;
+// Ball OOP demo
 
 
+let ballArray = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(0);
-  r = random(255);
-  g = random(255);
-  b = random(255);
-  pablo = new Walker();
-  juan = new Walker();
-}
 
+  ballArray.push(new Ball(width/2, height/2, random(-15, 15), random(-15, 15), 25));
+}
 
 function draw() {
-  pablo.move();
-  pablo.display();
-  juan.move();
-  juan.display();
+  background(255);
+  for (let i = 0; i < ballArray.length; i++) {
+    ballArray[i].move();
 
-  
+    //collision check
+    for (let j = 0; j <ballArray.length; j++) {
+      if (i !== j && ballArray[i].checkForCollision(ballArray[j]) ) {
+        // ballArray[i].fillColor = color(255, 0, 0);
+        // ballArray[j].fillColor = color(255, 0, 0);
+        
+        let tempDx = ballArray[i].dx;
+        let tempDy = ballArray[i].dy;
+        ballArray[i].dx = ballArray[j].dx;
+        ballArray[i].dy = ballArray[j].dy;
+        ballArray[j].dx = tempDx;
+        ballArray[j].dy = tempDy;
+      }
+    }
+
+    ballArray[i].display();
+  }
 }
 
-class Walker {
-  constructor() {
-    this.x = width/2;
-    this.y = height/2;
-    this.fillColor = color(r, g, b); 
-    this.stepSize = 12;
-    this.radius = 3;
-
+function keyPressed() {
+  if (key === " ") {
+    ballArray.push(new Ball(mouseX, mouseY, random(-15, 15), random(-15, 15), 25));
   }
+}
+
+function windowResized() {
+  setup();
+}
+
+class Ball {
+  constructor(x, y, dx, dy, radius) {
+    this.x = x;
+    this.y = y;
+    this.dx = dx;
+    this.dy = dy;
+    this.radius = radius;
+    this.fillColor = color(0);
+  }
+
+  move() {
+    // move
+    this.x += this.dx;
+    this.y += this.dy;
+
+    // bounce if needed
+    if (this.x > width - this.radius/2 || this.x < 0 + this.radius/2) {
+      this.dx *= -1;
+    }
+  
+    if (this.y > height - this.radius/2 || this.y < 0 + this.radius/2) {
+      this.dy *= -1;
+    }
+  }
+
   display() {
-    noStroke();
+    fill(this.fillColor);
     circle(this.x, this.y, this.radius * 2);
   }
-  move() {
-    let choice = random(100);
-    if (choice < 25) {
-      this.y -= this.stepSize;
-      r = random(255);
-      g = random(255);
-      b = random(255);
-      
-    }
-    else if (choice < 50) {
-      this.y += this.stepSize;
-      r = random(255);
-      g = random(255);
-      b = random(255);
-    }
-    else if (choice < 75) {
-      this.x -= this.stepSize;
-      r = random(255);
-      g = random(255);
-      b = random(255);
+
+  checkForCollision(anotherBall) {
+    let distanceBetweenCenters = dist(this.x, this.y, anotherBall.x, anotherBall.y);
+    let sumOfRadii = this.radius + anotherBall.radius;
+    if (distanceBetweenCenters < sumOfRadii) {
+      return true;
     }
     else {
-      this.x += this.stepSize
-      r = random(255);
-      g = random(255);
-      b = random(255);
-    } 
-
+      return false;
+    }
   }
 }
-
-function mousePressed();
-r = random(255);
-g = random(255);
-b = random(255);
