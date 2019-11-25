@@ -4,21 +4,23 @@ let x = 200;
 let y = 200;
 
 
-
+let uziVert = true;
 let movingLeft = false;
 let movingRight = false;
 let isJump = false;
 let isFalling = true;
+let isAttack = false;
 function preload() {
   uzi = loadImage("assets/uzi.png");
   br = loadImage("assets/pewpew.jpg");
+  vert = loadImage("assets/uzishoot.png");
 }
 
 function setup(){
   w = windowWidth/2;
   h = windowHeight/2;
   createCanvas(windowWidth, windowHeight);
-  //imageMode(Corner);
+  
   
 }
 
@@ -28,11 +30,14 @@ function draw() {
   background(br);
   moveUzi();
   fill(0);
-  imageMode(CENTER)
-  image(uzi, x, y, 350, 350);
+
 }
 
 function moveUzi() {
+  if (uziVert) {
+    imageMode(CENTER)
+    image(uzi, x, y, 350, 350);
+  }
   if (movingLeft) {
     x -=3;
   }
@@ -44,6 +49,10 @@ function moveUzi() {
   }
   if (isFalling) {
     y+= 5;
+  }
+  if (isAttack) {
+    uziAttack();
+    
   }
 }
 
@@ -58,6 +67,10 @@ function keyPressed() {
     isJump = true;
     isFalling = false;
   }
+  if (key === " ") {
+    isAttack = true; 
+    uziVert = false;   
+  }
 }
 
 function keyReleased() {
@@ -71,9 +84,17 @@ function keyReleased() {
     isJump = false;
     isFalling = true;
   }
+  if (key === " ") {
+    isAttack = false;
+    uziVert = true;
+  }
 }
 
-//function uziAttack();
+function uziAttack() {
+  imageMode(CENTER);
+  image(vert, x, y, 350, 350);
+
+}
 
 
 
