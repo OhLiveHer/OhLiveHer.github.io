@@ -2,6 +2,9 @@ let uzi;
 let br;
 let x = 200;
 let y = 200;
+let shot = 0;
+let money = 0;
+
 
 
 let uziVert = true;
@@ -10,10 +13,12 @@ let movingRight = false;
 let isJump = false;
 let isFalling = true;
 let isAttack = false;
+let isSafe = false;
 function preload() {
   uzi = loadImage("assets/uzi.png");
   br = loadImage("assets/pewpew.jpg");
   vert = loadImage("assets/uzishoot.png");
+  money = loadImage("assets/money.png");
 }
 
 function setup(){
@@ -30,7 +35,7 @@ function draw() {
   background(br);
   moveUzi();
   fill(0);
-
+  
 }
 
 function moveUzi() {
@@ -69,7 +74,8 @@ function keyPressed() {
   }
   if (key === " ") {
     isAttack = true; 
-    uziVert = false;   
+    uziVert = false;
+    money = 0;   
   }
 }
 
@@ -87,12 +93,18 @@ function keyReleased() {
   if (key === " ") {
     isAttack = false;
     uziVert = true;
+    shot = 0;
   }
 }
 
 function uziAttack() {
   imageMode(CENTER);
   image(vert, x, y, 350, 350);
+  if (money = 3) {
+    x += 20;
+  }
+
+
 
 }
 
